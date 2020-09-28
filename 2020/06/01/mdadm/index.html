@@ -1,0 +1,173 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>backup the mdraid info | b946c5a0bf547c89</title><meta name="description" content="How to backup mdraid info by dd123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687md8"><meta name="keywords" content="block,raid"><meta name="author" content="Ginger"><meta name="copyright" content="Ginger"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="shortcut icon" href="/img/stout-shield.png"><link rel="canonical" href="http://yoursite.com/2020/06/01/mdadm/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="article"><meta property="og:title" content="backup the mdraid info"><meta property="og:url" content="http://yoursite.com/2020/06/01/mdadm/"><meta property="og:site_name" content="b946c5a0bf547c89"><meta property="og:description" content="How to backup mdraid info by dd123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687md8"><meta property="og:image" content="http://yoursite.com/img/photo_by_spacex.jpg"><meta property="article:published_time" content="2020-06-01T04:40:20.000Z"><meta property="article:modified_time" content="2020-09-27T14:59:09.934Z"><meta name="twitter:card" content="summary"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  hexoversion: '5.2.0',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  bookmark: {
+    message_prev: 'Press',
+    message_next: 'to bookmark this page'
+  },
+  runtime: '',
+  date_suffix: {"one_hour":"Just","hours":"hours ago","day":"days ago"},
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+    },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2020-09-27 22:59:09'
+}</script><noscript><style type="text/css">
+#nav {
+  opacity: 1
+}
+.justified-gallery img {
+  opacity: 1
+}
+</style></noscript><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+  }
+}
+
+var autoChangeMode = 'false'
+var t = saveToLocal.get('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (saveToLocal.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><meta name="generator" content="Hexo 5.2.0"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/244247-guts.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">59</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">Tags</div><div class="length_num">66</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">Categories</div><div class="length_num">22</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div id="body-wrap"><div id="sidebar"><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#How-to-backup-mdraid-info-by-dd"><span class="toc-number">1.</span> <span class="toc-text">How to backup mdraid info by dd</span></a></li></ol></div></div></div><header class="post-bg" id="page-header" style="background-image: url(/img/photo_by_spacex.jpg)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">b946c5a0bf547c89</a></span><span id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">backup the mdraid info</div></div><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2020-06-01T04:40:20.000Z" title="Created 2020-06-01 12:40:20">2020-06-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2020-09-27T14:59:09.934Z" title="Updated 2020-09-27 22:59:09">2020-09-27</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/mdraid/">mdraid</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h3 id="How-to-backup-mdraid-info-by-dd"><a href="#How-to-backup-mdraid-info-by-dd" class="headerlink" title="How to backup mdraid info by dd"></a><a target="_blank" rel="noopener" href="https://raid.wiki.kernel.org/index.php/RAID_superblock_formats">How to backup mdraid info by dd</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line">md8 : active raid1 sde1[1] sda1[0]</span><br><span class="line">      468717568 blocks super 1.2 [2/2] [UU]</span><br><span class="line">      bitmap: 0/4 pages [0KB], 65536KB chunk</span><br><span class="line"></span><br><span class="line">$ dd <span class="keyword">if</span>=/dev/sda1 of=./sda1 bs=1M count=1</span><br><span class="line"></span><br><span class="line">$ hexdump -C sda1 | head -n 20</span><br><span class="line">00000000  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  |................|</span><br><span class="line">*</span><br><span class="line">Per-Array Identification &amp; Configuration area:16 Bytes</span><br><span class="line">                                                  0xc~0xf: padding block 0 </span><br><span class="line">00001000  <span class="built_in">fc</span> 4e 2b a9 01 00 00 00      01 00 00 00 00 00 00 00  |.N+.............|</span><br><span class="line">Magic num: a92b4efc Major version:1    0x8~0xb bit fearure_map:value 1 offset 0  raid map is used</span><br><span class="line">                                                   value 2 offset 1  raid recovery is progress</span><br><span class="line">                                                   value 4 offset 2 raid reshape is <span class="keyword">in</span> progress</span><br><span class="line">                                                   the others: undefined/reserved</span><br><span class="line"></span><br><span class="line">section: Per-Array Identification &amp; Configuration area 84 Bytes  </span><br><span class="line">          &lt;----------------------uuid--------------------&gt; 0x10-0x1f 16</span><br><span class="line">00001010  cb df 6a 02 54 1a 01 76  9b 9c 29 fe ab 08 8c a0  |..j.T..v..).....|</span><br><span class="line">/dev/sda1: UUID=<span class="string">&quot;cbdf6a02-541a-0176-9b9c-29feab088ca0&quot;</span></span><br><span class="line"></span><br><span class="line">&lt;--------------------------name <span class="keyword">for</span> the array------------&gt; 0x20-0x3f 32</span><br><span class="line">00001020  74 65 73 74 2d 74 65 73  74 2d 61 31 31 2d 32 2e  |test-test-a11-2.|</span><br><span class="line">00001030  74 65 73 74 2e 73 7a 2e  68 70 63 3a 38 00 00 00  |test.sz.hpc:8...|</span><br><span class="line"></span><br><span class="line">ctime(lower 40bit are secs,high 24 bits are microsecs)</span><br><span class="line">                    |               raid1       0 means left asymmetric</span><br><span class="line">                    |                 |            |</span><br><span class="line">00001040  10 77 cc 5e 00 00 00 00  01 00 00 00 00 00 00 00  |.w.^............|a</span><br><span class="line"></span><br><span class="line">         size of component devices(<span class="keyword">in</span> <span class="comment"># of 512-byte sectors),echo $((16#37e02000))=937435136</span></span><br><span class="line">                     |             chucksize not used <span class="keyword">in</span> raid1,linear,multipath</span><br><span class="line">                     |                  |        raid disk(02 means low bit, only 2 x devs to mirror)</span><br><span class="line">00001050  00 20 e0 37 00 00 00 00  00 00 00 00 02 00 00 00  |. .7............|</span><br><span class="line"></span><br><span class="line">          of sectors after superblock that bitmap starts</span><br><span class="line">               |     </span><br><span class="line">00001060  08 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  |................|</span><br><span class="line"></span><br><span class="line">Section: RAID-Reshape In-Process Metadata Storage/Recovery area 28 Bytes</span><br><span class="line">         he new RAID level being reshaped-to</span><br><span class="line">                           |       Next address of the array to reshape</span><br><span class="line">                                              |</span><br><span class="line">00001060              00 00 00 00  00 00 00 00 00 00 00 00  |................|</span><br><span class="line">     	change <span class="keyword">in</span> <span class="comment"># of raid disks</span></span><br><span class="line">               |   new layout <span class="keyword">for</span> array</span><br><span class="line">               |           |      New chunk size; padding block</span><br><span class="line">               |           |            |           |</span><br><span class="line">00001070  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  |................|</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Section: This-Component-Device Information area 64Bytes</span><br><span class="line"> the sector <span class="comment"># upon which data starts, sectors in the device that are used for data</span></span><br><span class="line">                     |                        |</span><br><span class="line">00001080  00 08 04 00 00 00 00 00  00 20 e0 37 00 00 00 00  |......... .7....|</span><br><span class="line">of the sector upon <span class="built_in">which</span> this superblock starts</span><br><span class="line">                     |              sectors before this offset (from data_offset) have been recovered</span><br><span class="line">00001090  08 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  |................|</span><br><span class="line"></span><br><span class="line">           dev_number</span><br><span class="line">               |      Number of read-errors that were corrected by re-writing</span><br><span class="line">               |           |                uuid</span><br><span class="line">000010a0  00 00 00 00 00 00 00 00  07 a8 e4 bf b5 6f c7 d6  |.............o..|</span><br><span class="line">                   uuid           devflags  Padding block 2(1 bit)</span><br><span class="line">                    |              |  Padding block 2 (7 bit)</span><br><span class="line">000010b0  90 d1 9b 62 bf 89 <span class="built_in">cd</span> e7  00 00 08 00 10 00 00 00  |...b............|</span><br><span class="line"></span><br><span class="line">Section: Array-State Information area 64Btes</span><br><span class="line">Time of last superblock update    Event Count <span class="keyword">for</span> the Array</span><br><span class="line">                     |                        |</span><br><span class="line">000010c0  5a 73 d4 5e 00 00 00 00  e6 05 00 00 00 00 00 00  |Zs.^............|</span><br><span class="line"></span><br><span class="line">      Event Count <span class="keyword">for</span> the Array    sb_csum        max_dev 0x80=128</span><br><span class="line">                     |                  |           |</span><br><span class="line">000010d0  ff ff ff ff ff ff ff ff  cf 29 76 cf 80 00 00 00  |.........)v.....|</span><br><span class="line"></span><br><span class="line">&lt;----32Bytes------------zero---------padding-------------&gt;</span><br><span class="line">000010e0  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  |................|</span><br><span class="line">000010f0  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  |................|</span><br><span class="line"></span><br><span class="line">Section: Device-Roles (Positions-in-Array) area</span><br><span class="line">Length: Variable number of bytes (but at least 768 bytes?)</span><br><span class="line">2 Bytes per device <span class="keyword">in</span> the array, including both spare-devices and faulty-devices</span><br><span class="line">*</span><br><span class="line">00001100  00 00 01 00 ff ff ff ff  ff ff ff ff ff ff ff ff  |................|</span><br><span class="line">00001110  ff ff ff ff ff ff ff ff  ff ff ff ff ff ff ff ff  |................|</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">          of sectors after superblock that bitmap starts</span><br><span class="line">               |</span><br><span class="line">00001060  08 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  |................|</span><br></pre></td></tr></table></figure>
+
+<p>In mdraid superblock, you could see bitmap starts at 8 x 512B=4096<br>You could see “bitm” magic num start at 0x1000=4096</p>
+<p>You could see the data update from 0x1200, so you could backup first 4608 Bytes in raid1<br>dd if=/dev/sdb1 of=sdb1_superblock bs=1 count=4608</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">00000000  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  |................|</span><br><span class="line">*</span><br><span class="line">00001000  fc 4e 2b a9 01 00 00 00  01 00 00 00 00 00 00 00  |.N+.............|</span><br><span class="line">00001010  a3 00 8f 75 49 1d ee e6  38 e6 cb d0 e5 3b 8b d2  |...uI...8....;..|</span><br><span class="line">00001020  74 65 73 74 2d 74 65 73  74 2d 61 31 31 2d 32 2e  |test-test-a11-2.|</span><br><span class="line">00001030  74 65 73 74 2e 73 7a 2e  68 70 63 3a 30 00 00 00  |test.sz.hpc:0...|</span><br><span class="line">00001040  16 71 cc 5e 00 00 00 00  01 00 00 00 00 00 00 00  |.q.^............|</span><br><span class="line">00001050  00 00 49 ba 00 00 00 00  00 00 00 00 02 00 00 00  |..I.............|</span><br><span class="line">00001060  08 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  |................|</span><br><span class="line">00001070  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  |................|</span><br><span class="line">00001080  00 08 04 00 00 00 00 00  00 00 49 ba 00 00 00 00  |..........I.....|</span><br><span class="line">00001090  08 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  |................|</span><br><span class="line">000010a0  00 00 00 00 00 00 00 00  d5 31 5f 6a c9 58 c2 a0  |.........1_j.X..|</span><br><span class="line">000010b0  55 50 81 dc 35 4b d1 e3  00 00 08 00 10 00 00 00  |UP..5K..........|</span><br><span class="line">000010c0  5a 99 d4 5e 00 00 00 00  0b 0d 00 00 00 00 00 00  |Z..^............|</span><br><span class="line">000010d0  ff ff ff ff ff ff ff ff  b5 64 59 a7 80 00 00 00  |.........dY.....|</span><br><span class="line">000010e0  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  |................|</span><br><span class="line">*</span><br><span class="line">00001100  00 00 01 00 ff ff ff ff  ff ff ff ff ff ff ff ff  |................|</span><br><span class="line">00001110  ff ff ff ff ff ff ff ff  ff ff ff ff ff ff ff ff  |................|</span><br><span class="line">*</span><br><span class="line">00001200  e8 0f a4 c4 ee 8d 1a 13  fd 81 a0 d0 6b ef c3 10  |............k...|</span><br><span class="line">00001210  3f 90 15 39 9d 95 0d 1d  07 32 03 df 28 16 cc 06  |?..9.....2..(...|</span><br><span class="line">00001220  40 e6 dc 82 43 13 36 1e  c8 9c 3b fd f9 00 e5 15  |@...C.6...;.....|</span><br><span class="line">00001230  99 73 43 71 81 a1 b7 19  73 ee 5b 74 8e 3b 65 09  |.sCq....s.[t.;e.|</span><br><span class="line">00001240  ce fd 51 d7 43 6d ca 07  b9 3f 03 7c ff 61 79 1f  |..Q.Cm...?.|.ay.|</span><br><span class="line">00001250  f7 e7 a3 4f 3e 6e be 16  fe fc f8 d5              |...O&gt;n......|</span><br></pre></td></tr></table></figure>
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Ginger</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://yoursite.com/2020/06/01/mdadm/">http://yoursite.com/2020/06/01/mdadm/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/block/">block</a><a class="post-meta__tags" href="/tags/raid/">raid</a></div><div class="post_share"><div class="social-share" data-image="/img/photo_by_spacex.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/07/22/network-benchmark-result/"><img class="prev-cover" src="/img/photo_by_spacex.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Network bencharmk results</div></div></a></div><div class="next-post pull-right"><a href="/2020/03/24/system_tools/"><img class="next-cover" src="/img/photo_by_spacex.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">System tools</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2019/01/03/hdd-power-mode/" title="the HDD power mode"><img class="cover" src="/img/photo_by_spacex.jpg"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-01-03</div><div class="title">the HDD power mode</div></div></a></div><div><a href="/2016/04/01/blktrace/" title="Blktrace"><img class="cover" src="/img/photo_by_spacex.jpg"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2016-04-01</div><div class="title">Blktrace</div></div></a></div><div><a href="/2016/08/10/block_device/" title="The block device"><img class="cover" src="/img/photo_by_spacex.jpg"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2016-08-10</div><div class="title">The block device</div></div></a></div><div><a href="/2019/05/24/megaraid/" title="Replace megaraid by strocli"><img class="cover" src="/img/photo_by_spacex.jpg"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-05-24</div><div class="title">Replace megaraid by strocli</div></div></a></div></div></div></article></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 By Ginger</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></section><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    loader: {
+      source: {
+        '[tex]/amsCd': '[tex]/amscd'
+      }
+    },
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        addClass: [200,() => {
+          document.querySelectorAll('mjx-container:not([display=\'true\']').forEach( node => {
+            const target = node.parentNode
+            if (!target.classList.contains('has-jax')) {
+              target.classList.add('mathjax-overflow')
+            }
+          })
+        }, '', false]
+      }
+    }
+  }
+  
+  var script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>
